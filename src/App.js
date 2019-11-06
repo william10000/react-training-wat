@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+// useEffect reruns ever time React renders/rerenders the screen
+import React, { useState, useEffect } from "react";
+import { getUsers } from "./api/userApi";
 
 function App() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "william", email: "w@w.com" },
-    { id: 2, name: "claire", email: "c@c.com" },
-    { id: 3, name: "junebug", email: "j@j.com" }
-  ]);
+  const [users, setUsers] = useState([]);
+
+  // useEffect runs by default after every render
+  useEffect(() => {
+    console.log("running useEffect");
+    // use _users to avoid naming confusion with users from above
+    getUsers().then(_users => setUsers(_users));
+  }, []); // array contains data where if the data changes, we want to run useEffect
+  // [] example of usage of useEffect where we want it to run just once
 
   const h1Style = {
     color: "blue",
@@ -16,7 +22,6 @@ function App() {
     const newUsers = users.filter(user => user.id !== id);
     setUsers(newUsers); // updates state so React knows to rerender
     // updating states gets queued - React will batch setState calls together for performance
-    debugger;
   }
 
   return (
