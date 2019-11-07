@@ -38,6 +38,14 @@ function Users() {
             <tr key={user.id}>
               <td>
                 <button onClick={() => handleDelete(user.id)}>Delete</button>
+                <Link to={`/user/${user.id}`}>
+                  <button>
+                    Edit
+                    <span aria-label="pencil emoji" role="img">
+                      ✏️
+                    </span>
+                  </button>
+                </Link>
               </td>
               <td>{user.id}</td>
               <td>{user.name}</td>
