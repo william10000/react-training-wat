@@ -15,8 +15,8 @@ export const Nav = () => (
     <NavLink activeStyle={activeStyle} to="/users">
       Users
     </NavLink>
-    <NavLink activeStyle={activeStyle} to="/manageuser">
+    {/* <NavLink activeStyle={activeStyle} to="/manageuser">
       Manage Users
-    </NavLink>
+    </NavLink> */}
   </nav>
 );

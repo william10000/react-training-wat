@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getUsers, deleteUser } from "./api/userApi";
+import { Link } from "react-router-dom";
 import "./app.css";
 
 function Users() {
@@ -19,6 +20,9 @@ function Users() {
   return (
     <>
       <h1 className="header">Users</h1>
+      <Link to="/manageuser">
+        <button>Add user</button>
+      </Link>
       {/* display user data in a table with headers for id, name, email */}
       <table className="table">
         <thead>
