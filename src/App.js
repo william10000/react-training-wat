@@ -13,7 +13,7 @@ function App() {
       {/* load the home page only at root */}
       <Route path="/" component={Home} exact />
       <Route path="/users" component={Users} />
-      <Route path="/manageuser" component={ManageUser} />
+      <Route path="/manageuser/:id?" component={ManageUser} />
     </>
   );
 }
