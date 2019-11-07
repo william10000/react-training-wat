@@ -22,7 +22,7 @@ function App() {
     <>
       <h1 className="header">Users</h1>
       {/* display user data in a table with headers for id, name, email */}
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th></th>
