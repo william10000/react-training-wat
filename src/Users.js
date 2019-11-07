@@ -46,9 +46,6 @@ function Users() {
           ))}
         </tbody>
       </table>
-      <label htmlFor="firstName">First Name</label>
-      <input id="firstName" type="text"></input>
-      <p>Paragraph</p>
     </>
   );
 }
