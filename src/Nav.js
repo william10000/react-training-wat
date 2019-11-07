@@ -1,10 +1,22 @@
-// create a Nav component that contains two links Home and ManageUser
 import React from "react";
+import { NavLink } from "react-router-dom";
+
+const activeStyle = {
+  color: "#614476",
+  fontWeight: "bold"
+};
 
 export const Nav = () => (
-  <>
-    <a href="/">Home</a>
-    <a href="/users">Users</a>
-    <a href="/manageuser">Manage Users</a>
-  </>
+  // screen reader will announce navigation when it gets to the <nav> tag
+  <nav className="navbar">
+    <NavLink activeStyle={activeStyle} to="/" exact>
+      Home
+    </NavLink>
+    <NavLink activeStyle={activeStyle} to="/users">
+      Users
+    </NavLink>
+    <NavLink activeStyle={activeStyle} to="/manageuser">
+      Manage Users
+    </NavLink>
+  </nav>
 );

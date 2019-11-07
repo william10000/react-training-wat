@@ -1,5 +1,3 @@
 import React from "react";
 
-export function ManageUser() {
-  return <h1>Add User</h1>;
-}
+export const ManageUser = () => <h1>Add User</h1>;

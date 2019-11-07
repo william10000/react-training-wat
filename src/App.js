@@ -1,6 +1,6 @@
 import React from "react";
 import Users from "./Users";
-import Home from "./Home";
+import { Home } from "./Home";
 import { ManageUser } from "./ManageUser";
 import { Nav } from "./Nav";
 import { Route } from "react-router-dom";
