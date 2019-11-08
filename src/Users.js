@@ -26,7 +26,7 @@ function Users({ users, deleteUser }) {
             <tr key={user.id}>
               <td>
                 <button onClick={() => deleteUser(user.id)}>Delete</button>
-                <Link to={`/user/${user.id}`}>
+                <Link to={`/manageuser/${user.id}`}>
                   <button>
                     Edit
                     <span aria-label="pencil emoji" role="img">

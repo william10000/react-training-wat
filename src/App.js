@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addUser, getUsers, deleteUser } from "./api/userApi";
+import { addUser, getUsers, deleteUser, updateUser } from "./api/userApi";
 import Users from "./Users";
 import { Home } from "./Home";
 import { ManageUser } from "./ManageUser";
@@ -15,16 +15,21 @@ function App() {
     getUsers().then(_users => setUsers(_users));
   }, []);
 
-  function handleDelete(id) {
+  const handleDelete = id => {
     const newUsers = users.filter(user => user.id !== id);
     deleteUser(id).then(() => {
       setUsers(newUsers);
     });
-  }
+  };
 
-  const addNewUser = async newUser => {
+  const handleAddUser = async newUser => {
     const addedUser = await addUser(newUser);
     setUsers([...users, addedUser]);
+  };
+
+  const handleUpdateUser = async updatedUser => {
+    await updateUser(updatedUser);
+    setUsers(users.map(u => (u.id === updatedUser.id ? updatedUser : u)));
   };
 
   return (
@@ -36,10 +41,16 @@ function App() {
         path="/users"
         render={props => <Users users={users} deleteUser={handleDelete} />}
       />
-      {/* could pass down a single add user function that accepts a user and adds the user using setUsers */}
+      {/* could pass down a single user, just the one we want to edit */}
       <Route
         path="/manageuser/:currentUserId?"
-        render={props => <ManageUser addNewUser={addNewUser} />}
+        render={props => (
+          <ManageUser
+            users={users}
+            handleAddUser={handleAddUser}
+            handleUpdateUser={handleUpdateUser}
+          />
+        )}
       />
     </>
   );
