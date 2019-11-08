@@ -33,7 +33,7 @@ function App() {
       />
       <Route
         path="/manageuser/:currentUserId?"
-        render={props => <ManageUser users={users} />}
+        render={props => <ManageUser users={users} setUsers={setUsers} />}
       />
     </>
   );

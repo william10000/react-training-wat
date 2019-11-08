@@ -3,7 +3,7 @@ import { addUser } from "./api/userApi";
 import { Redirect, useRouteMatch } from "react-router-dom";
 import { Input } from "./Input";
 
-export const ManageUser = () => {
+export const ManageUser = ({ users, setUsers }) => {
   const match = useRouteMatch(); // info on matching url
   const { currentUserId } = match.params; // example of aliasing
   console.log(match);
@@ -21,10 +21,11 @@ export const ManageUser = () => {
     }
   });
 
-  // exercise: lift concern to app.js
   async function handleSubmit(e) {
     e.preventDefault(); // stop browser from posting back
     const addedUser = await addUser(user);
+    // setUsers is async but doesn't return a promise so awaiting it is pointless
+    setUsers([...users, addedUser]);
     console.log(addedUser);
     setSaveCompleted(true);
   }
