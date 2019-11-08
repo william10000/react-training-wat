@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUsers, deleteUser } from "./api/userApi";
+import { addUser, getUsers, deleteUser } from "./api/userApi";
 import Users from "./Users";
 import { Home } from "./Home";
 import { ManageUser } from "./ManageUser";
@@ -22,6 +22,11 @@ function App() {
     });
   }
 
+  const addNewUser = async newUser => {
+    const addedUser = await addUser(newUser);
+    setUsers([...users, addedUser]);
+  };
+
   return (
     <>
       <Nav />
@@ -31,9 +36,10 @@ function App() {
         path="/users"
         render={props => <Users users={users} deleteUser={handleDelete} />}
       />
+      {/* could pass down a single add user function that accepts a user and adds the user using setUsers */}
       <Route
         path="/manageuser/:currentUserId?"
-        render={props => <ManageUser users={users} setUsers={setUsers} />}
+        render={props => <ManageUser addNewUser={addNewUser} />}
       />
     </>
   );

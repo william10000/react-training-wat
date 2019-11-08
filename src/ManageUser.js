@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { addUser } from "./api/userApi";
 import { Redirect, useRouteMatch } from "react-router-dom";
 import { Input } from "./Input";
 
-export const ManageUser = ({ users, setUsers }) => {
+export const ManageUser = ({ addNewUser }) => {
   const match = useRouteMatch(); // info on matching url
   const { currentUserId } = match.params; // example of aliasing
   console.log(match);
@@ -22,11 +21,8 @@ export const ManageUser = ({ users, setUsers }) => {
   });
 
   async function handleSubmit(e) {
-    e.preventDefault(); // stop browser from posting back
-    const addedUser = await addUser(user);
-    // setUsers is async but doesn't return a promise so awaiting it is pointless
-    setUsers([...users, addedUser]);
-    console.log(addedUser);
+    e.preventDefault();
+    await addNewUser(user);
     setSaveCompleted(true);
   }
 
