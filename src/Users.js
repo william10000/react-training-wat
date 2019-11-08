@@ -25,7 +25,12 @@ function Users({ users, deleteUser }) {
           {users.map(user => (
             <tr key={user.id}>
               <td>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button
+                  aria-label={`Delete user ${user.name}`}
+                  onClick={() => deleteUser(user.id)}
+                >
+                  Delete
+                </button>
                 <Link to={`/manageuser/${user.id}`}>
                   <button>
                     Edit
