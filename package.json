@@ -10,7 +10,8 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "start-server-and-test": "^1.10.6"
   },
   "scripts": {
     "start": "run-p start:app start:api",
@@ -19,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cy": "cypress open"
+    "cy:open": "cypress open",
+    "cy": "start-server-and-test start http://localhost:3000 cy:open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,6 +40,7 @@
   },
   "devDependencies": {
     "@testing-library/cypress": "^5.0.2",
-    "cypress": "^3.6.0"
+    "cypress": "^3.6.0",
+    "eslint-plugin-cypress": "^2.7.0"
   }
 }

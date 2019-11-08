@@ -3,5 +3,10 @@ context("Users", () => {
     cy.visit("http://localhost:3000/users");
   });
 
-  it("should delete a user when delete is clicked", () => {});
+  it("should and and delete a user", () => {
+    cy.findByText("Add user").click();
+    cy.findByLabelText("name").type("Bob");
+    cy.findByLabelText("email").type("bob@bob.com{enter}");
+    cy.findByLabelText("Delete user Bob").click();
+  });
 });
