@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { getUsers, deleteUser } from "./api/userApi";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./app.css";
 
-function Users() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    getUsers().then(_users => setUsers(_users));
-  }, []); // array contains data where if the data changes, we want to run useEffect
-
-  function handleDelete(id) {
-    const newUsers = users.filter(user => user.id !== id);
-    deleteUser(id).then(() => {
-      setUsers(newUsers);
-    });
-  }
-
+// can destructure props directly in the function args, but are they are var types
+// props are immutable and React could complain if we try to change them
+// but apparently you can reassign stuff in props
+function Users({ users, deleteUser }) {
   return (
     <>
       <h1 className="header">Users</h1>
@@ -37,7 +25,7 @@ function Users() {
           {users.map(user => (
             <tr key={user.id}>
               <td>
-                <button onClick={() => handleDelete(user.id)}>Delete</button>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
                 <Link to={`/user/${user.id}`}>
                   <button>
                     Edit

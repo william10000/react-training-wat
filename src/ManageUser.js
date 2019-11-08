@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addUser } from "./api/userApi";
-import { Redirect } from "react-router-dom";
+import { Redirect, useRouteMatch } from "react-router-dom";
 import { Input } from "./Input";
 
 export const ManageUser = () => {
+  const match = useRouteMatch(); // info on matching url
+  const { currentUserId } = match.params; // example of aliasing
+  console.log(match);
+
   const [user, setUser] = useState({
     name: "",
     email: ""
@@ -11,9 +15,17 @@ export const ManageUser = () => {
 
   const [saveCompleted, setSaveCompleted] = useState(false);
 
+  useEffect(() => {
+    if (currentUserId) {
+      // get currentUserId out of props.users
+    }
+  });
+
+  // exercise: lift concern to app.js
   async function handleSubmit(e) {
     e.preventDefault(); // stop browser from posting back
-    await addUser(user);
+    const addedUser = await addUser(user);
+    console.log(addedUser);
     setSaveCompleted(true);
   }
 
